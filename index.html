@@ -3,8 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/style.css" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Credit Card Challenge</title>
   </head>
-  <body></body>
+  <body>
+    <div class="background"></div>
+    <main class="cc-wrapper">
+      <form action="" class="cc-form">
+        <section class="cc-image">
+          <figure class="cc-image__side front">
+            <div class="cc-rows">
+              <img
+                src="./src/images/v-logo.svg"
+                class="cc-company cc-row__label"
+              />
+            </div>
+            <div class="cc-rows">
+              <div class="cc-numbers cc-row__label">
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+                <span class="cc-number">•</span>
+              </div>
+            </div>
+            <div class="cc-rows">
+              <div class="cc-name cc-row__label">Full Name</div>
+              <div class="cc-expires cc-row__label">MM / YY</div>
+            </div>
+          </figure>
+          <figure class="cc-image__side"></figure>
+        </section>
+        <section class="cc-groups">
+          <div class="cc-group">
+            <input
+              class="cc-input"
+              pattern="[A-Za-z]"
+              name="ccname"
+              id="frmNameCC"
+              required
+              autocomplete="cc-name"
+            />
+            <label for="frmNameCC" class="cc-label">Name on card</label>
+          </div>
+          <div class="cc-group">
+            <input
+              class="cc-input"
+              pattern="[0-9]{16}"
+              name="cardnumber"
+              id="frmCCNum"
+              required
+              autocomplete="cc-number"
+            />
+            <label for="frmCCNum" class="cc-label">Card Number</label>
+          </div>
+          <div class="cc-group">
+            <input
+              class="cc-input"
+              pattern="[0-9]{3}"
+              name="cvc"
+              id="frmCCCVC"
+              required
+              autocomplete="cc-csc"
+            />
+            <label for="frmCCCVC" class="cc-label">CVC</label>
+          </div>
+          <div class="cc-group">
+            <input
+              class="cc-input"
+              name="cc-exp"
+              id="frmCCExp"
+              required
+              autocomplete="cc-exp"
+            />
+            <label for="frmCCExp" class="cc-label">Expiry</label>
+          </div>
+        </section>
+        <button type="submit" class="cc-submitButton">Submit</button>
+      </form>
+    </main>
+  </body>
 </html>
