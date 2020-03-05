@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/style.css" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/styles/style.css" />
     <title>Credit Card Challenge</title>
   </head>
   <body>
@@ -44,7 +44,18 @@
               <div class="cc-expires cc-row__label">MM / YY</div>
             </div>
           </figure>
-          <figure class="cc-image__side"></figure>
+          <figure class="cc-image__side back">
+            <div class="cc-rows cc-magneticStripe"></div>
+            <div class="cc-rows">
+              <div id="figure-cvc" class="cc-cvc cc-row__label">cvc</div>
+            </div>
+            <div class="cc-rows">
+              <img
+                src="./src/images/v-logo.svg"
+                class="cc-company cc-row__label"
+              />
+            </div>
+          </figure>
         </section>
         <section class="cc-groups">
           <div class="cc-group">
@@ -61,6 +72,7 @@
           <div class="cc-group">
             <input
               class="cc-input"
+              max="16"
               pattern="[0-9]{16}"
               name="cardnumber"
               id="frmCCNum"
@@ -69,9 +81,21 @@
             />
             <label for="frmCCNum" class="cc-label">Card Number</label>
           </div>
-          <div class="cc-group">
+          <div class="cc-group cc-group--expire">
+            <input
+              class="cc-input cc-input--expire"
+              name="cc-exp"
+              id="frmCCExp"
+              required
+              placeholder="MM/YY"
+              autocomplete="cc-exp"
+            />
+            <label for="frmCCExp" class="cc-label">Expiry</label>
+          </div>
+          <div class="cc-group cc-group--cvc">
             <input
               class="cc-input"
+              max="3"
               pattern="[0-9]{3}"
               name="cvc"
               id="frmCCCVC"
@@ -80,19 +104,10 @@
             />
             <label for="frmCCCVC" class="cc-label">CVC</label>
           </div>
-          <div class="cc-group">
-            <input
-              class="cc-input"
-              name="cc-exp"
-              id="frmCCExp"
-              required
-              autocomplete="cc-exp"
-            />
-            <label for="frmCCExp" class="cc-label">Expiry</label>
-          </div>
         </section>
         <button type="submit" class="cc-submitButton">Submit</button>
       </form>
     </main>
+    <script src="./src/index.js"></script>
   </body>
 </html>

@@ -16,6 +16,7 @@ body {
 }
 
 .background {
+  filter: blur(100px);
   position: fixed;
   top: 0;
   left: 0;
@@ -48,10 +49,9 @@ body {
 
 .cc-wrapper {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   padding: 10px;
-  backdrop-filter: blur(100px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +60,7 @@ body {
 .cc-form {
   position: relative;
   min-height: 55%;
-  width: 35%;
+  width: 55%;
   min-width: 250px;
   max-width: 450px;
   padding: 20px 40px;
@@ -82,10 +82,6 @@ body {
   top: -20%;
   height: 40%;
   width: 80%;
-  border-radius: 10px;
-  box-shadow: 0 15px 20px -10px rgba(246, 119, 150, 0.6);
-  color: white;
-  background: linear-gradient(to top, #f67796, #7e66c7);
 }
 
 .cc-image__side {
@@ -95,14 +91,34 @@ body {
   right: 0;
   bottom: 0;
   padding: 25px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 15px 20px -10px rgba(246, 119, 150, 0.6);
+  background: linear-gradient(to top, #f67796, #7e66c7);
+  transition: all 500ms linear;
+  backface-visibility: hidden;
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
 }
 
+.back {
+  transform: perspective(1000px) rotateY(-180deg);
+}
+
+.front.active {
+  transform: perspective(1000px) rotateY(180deg);
+}
+
+.front.active + .back {
+  transform: perspective(1000px) rotateY(0);
+}
+
 .cc-rows {
   overflow: hidden;
+  min-height: 35px;
   display: flex;
   justify-content: space-between;
 }
@@ -142,6 +158,17 @@ body {
   width: 70%;
 }
 
+.cc-magneticStripe {
+  background: #191919;
+}
+
+.cc-cvc {
+  text-align: right;
+  width: 70%;
+  color: #191919;
+  background: #f4f9fc;
+}
+
 /*******************************/
 
 .cc-groups {
@@ -149,7 +176,7 @@ body {
   height: 90%;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
@@ -163,6 +190,14 @@ body {
 .cc-group {
   position: relative;
   margin: 15px 0;
+}
+
+.cc-group--expire {
+  width: 70%;
+}
+
+.cc-group--cvc {
+  width: 25%;
 }
 
 .cc-label {
@@ -185,14 +220,19 @@ body {
 .cc-input {
   border: 1px solid #7e66c7;
   border-radius: 4px;
-  padding-left: 10px;
+  padding: 0 10px;
   height: 45px;
   font-size: 1em;
   background: white;
 }
 
-.cc-input:focus + .cc-label {
+.cc-label--animation {
   top: 0;
+}
+
+.cc-input--expire::placeholder {
+  font-size: 0.8em;
+  color: rgba(14, 14, 14, 0.4);
 }
 
 .cc-submitButton {
@@ -215,19 +255,48 @@ body {
   box-shadow: 0 5px 30px -10px rgba(126, 102, 199, 0.6);
 }
 
+@media screen and (min-height: 410px) and (orientation: landscape) {
+  .cc-form {
+    width: 100%;
+    padding: 10px;
+    margin-top: 150px;
+  }
+
+  .cc-image {
+    height: 220px;
+    top: -110px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .cc-form {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
     margin-top: 50px;
   }
 
   .cc-image {
-    height: 150px;
-    top: -75px;
+    width: 90%;
+    height: 200px;
+    top: -100px;
+  }
+
+  .cc-image__side {
+    padding: 15px;
   }
 
   .cc-groups {
-    padding-top: 75px;
+    padding-top: 130px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .cc-form {
+    margin-top: 150px;
+  }
+
+  .cc-name,
+  .cc-expires {
+    font-size: 0.9em;
   }
 }
