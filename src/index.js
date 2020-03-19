@@ -41,6 +41,11 @@ function onChange(e) {
 
     if (e.inputType === "deleteContentBackward") {
       cardNumer[e.target.value.length].textContent = "•";
+      if (e.target.value === "") {
+        cardNumer.forEach(number => {
+          number.textContent = "•";
+        });
+      }
     } else {
       cardNumer[lastValueIndex].textContent = e.target.value[lastValueIndex];
     }
@@ -49,6 +54,7 @@ function onChange(e) {
   if (e.target.name === "ccmonth") {
     document.querySelector(".ccmonth").textContent = e.target.value;
   }
+
   if (e.target.name === "ccyear") {
     document.querySelector(".ccyear").textContent = e.target.value;
   }
