@@ -1,7 +1,8 @@
 # Credit card Challenge in vanilla JS
 
-## Acknowledgments
+![screenshot](https://github.com/bkaguilar/credit-card-challenge/blob/master/src/images/cc.png)
 
+## Acknowledgments
 ### Inspiration
 
-* [vue-interactive-paycard](https://github.com/muhammederdem/vue-interactive-paycard) - by **Muhammed Erdem**
+* **Muhammed Erdem** - [vue-interactive-paycard](https://github.com/muhammederdem/vue-interactive-paycard)
