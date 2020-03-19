@@ -1,71 +1,69 @@
-// let cvc = document.getElementById("frmCCCVC");
-// let card = document.querySelector(".front");
-// let cardCvc = document.querySelector("#figure-cvc");
-
-// class ShowValue {
-//   constructor(input, cardLabel, card) {
-//     this.input = input;
-//     this.card = card;
-//     this.label = cardLabel;
-//   }
-//   log() {
-//     this.input.onfocus = () => {
-//       this.card.classList.add("active");
-//     };
-//     this.input.onblur = () => {
-//       this.card.classList.remove("active");
-//     };
-//     this.input.onchange = () => {
-//       this.label.textContent = this.input.value;
-//       console.log(this.input.value);
-//     };
-//   }
-// }
-
-// let inpt = new ShowValue(cvc, cardCvc, card);
-
-// inpt.log();
-
 let card = document.querySelector(".front");
-let inputs = document.querySelectorAll("input");
+let itemsCard = document.querySelectorAll(".cc-item");
+let inputs = document.querySelectorAll(".cc-input");
 
 function onFocus(e) {
   document
     .querySelector(`label[for='${e.target.id}']`)
     .classList.add("cc-label--animation");
-  if (e.target.name === "cvc") {
-    card.classList.add("active");
-  }
+  if (e.target.name === "cvc") card.classList.add("active");
 }
+
 function onBlur(e) {
   if (e.target.value === "") {
     document
       .querySelector(`label[for='${e.target.id}']`)
       .classList.remove("cc-label--animation");
   }
-  if (e.target.name === "cvc") {
-    card.classList.remove("active");
-  }
+  card.classList.remove("active");
 }
 
-function onchange(e) {
+function checkValue(element, classElement, text) {
+  element.target.value === ""
+    ? (document.querySelector(classElement).textContent = text)
+    : (document.querySelector(classElement).textContent = element.target.value);
+}
+
+function onChange(e) {
+  let cardNumer = document.querySelectorAll(".cardnumber");
   if (e.target.name === "cvc") {
-    document.querySelector("#figure-cvc").textContent = e.target.value;
+    if (e.target.value.length > 3) return;
+    checkValue(e, ".cccvc", "cvc");
   }
 
   if (e.target.name === "ccname") {
-    document.querySelector(".cc-name").textContent = e.target.value;
+    checkValue(e, ".ccname", "Full Name");
   }
 
   if (e.target.name === "cardnumber") {
-    document.querySelector(
-      ".cc-numbers"
-    ).innerHTML = `<span class="cc-number">${e.target.value}</span>`;
+    let lastValueIndex = [e.target.value.length - 1];
+    if (e.target.value.length > 16) return;
+
+    if (e.inputType === "deleteContentBackward") {
+      cardNumer[e.target.value.length].textContent = "•";
+    } else {
+      cardNumer[lastValueIndex].textContent = e.target.value[lastValueIndex];
+    }
   }
+
+  if (e.target.name === "ccmonth") {
+    document.querySelector(".ccmonth").textContent = e.target.value;
+  }
+  if (e.target.name === "ccyear") {
+    document.querySelector(".ccyear").textContent = e.target.value;
+  }
+}
+
+function onLabelClick(e) {
+  document.querySelector(`.cc-input[name='${e.target.dataset.name}']`).focus();
 }
 
 for (let i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener("focus", onFocus);
   inputs[i].addEventListener("blur", onBlur);
-  inputs[i].addEventListener("change", onchange);
+  inputs[i].addEventListener("input", onChange);
+}
+
+for (let i = 0; i < itemsCard.length; i++) {
+  itemsCard[i].addEventListener("click", onLabelClick);
 }

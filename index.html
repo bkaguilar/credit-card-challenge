@@ -20,34 +20,44 @@
               />
             </div>
             <div class="cc-rows">
-              <div class="cc-numbers cc-row__label">
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
-                <span class="cc-number">•</span>
+              <div
+                class="cc-numbers cc-row__label cc-item"
+                data-name="cardnumber"
+              >
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
+                <span class="cardnumber">•</span>
               </div>
             </div>
             <div class="cc-rows">
-              <div class="cc-name cc-row__label">Full Name</div>
-              <div class="cc-expires cc-row__label">MM / YY</div>
+              <div class="ccname cc-row__label cc-item" data-name="ccname">
+                Full Name
+              </div>
+              <div class="cc-expires cc-row__label">
+                <span class="ccmonth cc-item" data-name="ccmonth">MM</span
+                >&nbsp;/&nbsp;<span class="ccyear cc-item" data-name="ccyear"
+                  >YY</span
+                >
+              </div>
             </div>
           </figure>
           <figure class="cc-image__side back">
             <div class="cc-rows cc-magneticStripe"></div>
             <div class="cc-rows">
-              <div id="figure-cvc" class="cc-cvc cc-row__label">cvc</div>
+              <div id="figure-cvc" class="cccvc cc-row__label">cvc</div>
             </div>
             <div class="cc-rows">
               <img
@@ -60,6 +70,19 @@
         <section class="cc-groups">
           <div class="cc-group">
             <input
+              type="number"
+              class="cc-input"
+              maxlength="16"
+              pattern="[0-9]{16}"
+              name="cardnumber"
+              id="frmCCNum"
+              required
+              autocomplete="cc-number"
+            />
+            <label for="frmCCNum" class="cc-label">Card Number</label>
+          </div>
+          <div class="cc-group">
+            <input
               class="cc-input"
               pattern="[A-Za-z]"
               name="ccname"
@@ -69,34 +92,56 @@
             />
             <label for="frmNameCC" class="cc-label">Name on card</label>
           </div>
-          <div class="cc-group">
-            <input
-              class="cc-input"
-              max="16"
-              pattern="[0-9]{16}"
-              name="cardnumber"
-              id="frmCCNum"
+          <div class="cc-group cc-group--expire">
+            <select
+              class="cc-input cc-input--expire"
+              name="ccmonth"
+              data-name="ccmonth"
+              id="frmCCExp"
+              autocomplete="cc-exp-month"
               required
-              autocomplete="cc-number"
-            />
-            <label for="frmCCNum" class="cc-label">Card Number</label>
+            >
+              <option selected></option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <label for="frmCCExp" class="cc-label">Month</label>
           </div>
           <div class="cc-group cc-group--expire">
-            <input
+            <select
               class="cc-input cc-input--expire"
-              name="cc-exp"
-              id="frmCCExp"
+              name="ccyear"
+              data-name="ccyear"
+              id="frmCCExp--year"
+              autocomplete="cc-exp-year"
               required
-              placeholder="MM/YY"
-              autocomplete="cc-exp"
-            />
-            <label for="frmCCExp" class="cc-label">Expiry</label>
+            >
+              <option selected></option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+              <option value="2022">2022</option>
+              <option value="2023">2023</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+            </select>
+            <label for="frmCCExp--year" class="cc-label">Year</label>
           </div>
           <div class="cc-group cc-group--cvc">
             <input
+              type="number"
               class="cc-input"
-              max="3"
-              pattern="[0-9]{3}"
+              maxlength="3"
+              pattern="[0-9]{3}*"
               name="cvc"
               id="frmCCCVC"
               required

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Alata&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Alata|Roboto+Mono&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -6,13 +6,22 @@
 }
 
 button,
-input {
+input,
+select {
   outline: none;
 }
 
 body {
   background: #f4f9fc;
   font-family: "Alata", sans-serif;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 .background {
@@ -76,7 +85,6 @@ body {
 }
 
 /*******************************/
-
 .cc-image {
   position: absolute;
   top: -20%;
@@ -130,7 +138,8 @@ body {
 
 .cc-company {
   margin-left: auto;
-  height: 30px;
+  padding: 0;
+  height: 25px;
   display: block;
 }
 
@@ -140,29 +149,40 @@ body {
   justify-content: space-between;
 }
 
-.cc-number {
+.cardnumber {
+  text-align: center;
+  pointer-events: none;
+  width: 1ch;
   font-size: 2ch;
+  font-family: "Roboto Mono", monospace;
 }
 
-.cc-number:nth-of-type(4n) {
+.cardnumber:nth-of-type(4n) {
   margin-right: 10px;
 }
 
-.cc-name,
+.cardnumber:last-of-type {
+  margin-right: 0;
+}
+
+.ccname,
 .cc-expires {
   font-weight: bold;
   display: inline-block;
 }
 
-.cc-name {
+.ccname {
   width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cc-magneticStripe {
   background: #191919;
 }
 
-.cc-cvc {
+.cccvc {
   text-align: right;
   width: 70%;
   color: #191919;
@@ -170,7 +190,6 @@ body {
 }
 
 /*******************************/
-
 .cc-groups {
   padding-top: 30%;
   height: 90%;
@@ -192,10 +211,12 @@ body {
   margin: 15px 0;
 }
 
-.cc-group--expire {
-  width: 70%;
+.cc-group--expire select {
+  z-index: 1;
+  cursor: pointer;
 }
 
+.cc-group--expire,
 .cc-group--cvc {
   width: 25%;
 }
@@ -218,12 +239,17 @@ body {
 }
 
 .cc-input {
-  border: 1px solid #7e66c7;
+  border: 1px solid rgba(126, 102, 199, 0.3);
   border-radius: 4px;
   padding: 0 10px;
   height: 45px;
   font-size: 1em;
   background: white;
+  transition: all 300ms ease;
+}
+
+.cc-input:focus {
+  border-color: #7e66c7;
 }
 
 .cc-label--animation {
@@ -295,7 +321,7 @@ body {
     margin-top: 150px;
   }
 
-  .cc-name,
+  .ccname,
   .cc-expires {
     font-size: 0.9em;
   }
