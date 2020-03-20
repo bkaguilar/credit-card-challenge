@@ -45,18 +45,18 @@ function onChange(e) {
   }
 
   if (e.target.name === "cardnumber") {
-    e.target.value.replace(/^[0-9]+$/, "($1) $2-$3");
+    // e.target.value.replace(/^[0-9]{4}+$/, "($1) $2-$3");
     if (e.target.value.length > 16) return;
 
     cardNumber.forEach(number => {
       if (e.target.value === "") {
         number.textContent = "•";
-        number.classList.remove("active");
+        number.classList.remove("numberAnimation");
       }
     });
 
     Array.from(e.target.value).forEach((number, index) => {
-      cardNumber[index].classList.add("active");
+      cardNumber[index].classList.add("numberAnimation");
       cardNumber[index].textContent = number;
     });
 
@@ -65,7 +65,7 @@ function onChange(e) {
       e.inputType === "deleteContentForward"
     ) {
       cardNumber[e.target.value.length].textContent = "•";
-      cardNumber[e.target.value.length].classList.remove("active");
+      cardNumber[e.target.value.length].classList.remove("numberAnimation");
     }
   }
 }

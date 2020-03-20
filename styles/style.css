@@ -281,11 +281,11 @@ input[type="number"]::-webkit-outer-spin-button {
   box-shadow: 0 5px 30px -10px rgba(126, 102, 199, 0.6);
 }
 
-.active {
-  animation: show 800ms ease forwards;
+.numberAnimation {
+  animation: shownumber 800ms ease forwards;
 }
 
-@keyframes show {
+@keyframes shownumber {
   0% {
     transform: translateY(-10px);
   }
