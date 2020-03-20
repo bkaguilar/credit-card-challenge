@@ -281,6 +281,19 @@ input[type="number"]::-webkit-outer-spin-button {
   box-shadow: 0 5px 30px -10px rgba(126, 102, 199, 0.6);
 }
 
+.active {
+  animation: show 800ms ease forwards;
+}
+
+@keyframes show {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 @media screen and (min-height: 410px) and (orientation: landscape) {
   .cc-form {
     width: 100%;

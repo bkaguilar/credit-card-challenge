@@ -25,38 +25,48 @@ function checkValue(element, classElement, text) {
 }
 
 function onChange(e) {
-  let cardNumer = document.querySelectorAll(".cardnumber");
-  if (e.target.name === "cvc") {
-    if (e.target.value.length > 3) return;
-    checkValue(e, ".cccvc", "cvc");
-  }
+  let cardNumber = document.querySelectorAll(".cardnumber");
 
   if (e.target.name === "ccname") {
     checkValue(e, ".ccname", "Full Name");
   }
 
-  if (e.target.name === "cardnumber") {
-    let lastValueIndex = [e.target.value.length - 1];
-    if (e.target.value.length > 16) return;
-
-    if (e.inputType === "deleteContentBackward") {
-      cardNumer[e.target.value.length].textContent = "•";
-      if (e.target.value === "") {
-        cardNumer.forEach(number => {
-          number.textContent = "•";
-        });
-      }
-    } else {
-      cardNumer[lastValueIndex].textContent = e.target.value[lastValueIndex];
-    }
-  }
-
   if (e.target.name === "ccmonth") {
-    document.querySelector(".ccmonth").textContent = e.target.value;
+    checkValue(e, ".ccmonth", "MM");
   }
 
   if (e.target.name === "ccyear") {
-    document.querySelector(".ccyear").textContent = e.target.value;
+    checkValue(e, ".ccyear", "YY");
+  }
+
+  if (e.target.name === "cvc") {
+    if (e.target.value.length > 3) return;
+    checkValue(e, ".cccvc", "cvc");
+  }
+
+  if (e.target.name === "cardnumber") {
+    e.target.value.replace(/^[0-9]+$/, "($1) $2-$3");
+    if (e.target.value.length > 16) return;
+
+    cardNumber.forEach(number => {
+      if (e.target.value === "") {
+        number.textContent = "•";
+        number.classList.remove("active");
+      }
+    });
+
+    Array.from(e.target.value).forEach((number, index) => {
+      cardNumber[index].classList.add("active");
+      cardNumber[index].textContent = number;
+    });
+
+    if (
+      e.inputType === "deleteContentBackward" ||
+      e.inputType === "deleteContentForward"
+    ) {
+      cardNumber[e.target.value.length].textContent = "•";
+      cardNumber[e.target.value.length].classList.remove("active");
+    }
   }
 }
 
