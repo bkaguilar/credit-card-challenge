@@ -1,6 +1,6 @@
 # Credit card Challenge in vanilla JS
 
-![screenshot](https://github.com/bkaguilar/credit-card-challenge/blob/master/src/images/cc.png)
+![demo gif](https://media.giphy.com/media/LqOPgliZofeg7ZVzDC/giphy.gif)
 
 ## Acknowledgments
 ### Inspiration
